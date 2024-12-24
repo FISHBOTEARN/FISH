@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <img id="gifDisplay" src="material/images/loading.gif" alt="Loading">
+    </div>
+
+    <script>
+        // Show verification GIF after loading
+        setTimeout(function () {
+            document.getElementById('gifDisplay').src = 'material/images/ver.gif';
+        }, 3000); // 3 seconds for loading gif
+
+        // Show reward GIF after verification
+        setTimeout(function () {
+            document.getElementById('gifDisplay').src = 'material/images/reward.gif';
+        }, 9000); // 6 seconds for ver gif
+
+        // Redirect to home.html after reward
+        setTimeout(function () {
+            window.location.href = 'home.html';
+        }, 12000); // 3 seconds for reward gif
+    </script>
+</body>
+</html>

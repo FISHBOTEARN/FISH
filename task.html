@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="material/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        #balance-container {
+            margin: 20px;
+            font-size: 18px;
+        }
+
+        .task-container {
+            margin: 10px auto;
+            max-width: 600px;
+        }
+
+        .task {
+            margin: 10px auto;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            background-color: #333030;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            width: 80%;
+        }
+
+            .task:hover {
+                transform: translateY(-5px);
+            }
+
+        .task-detail {
+            display: flex;
+            align-items: center;
+        }
+
+        .task-image img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .task h4 {
+            margin: 0;
+            font-size: 15px;
+            color: #f2f2f2;
+        }
+
+        .task-data {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+            .task-data img {
+                margin-right: 5px;
+            }
+
+            .task-data h5 {
+                margin: 0;
+                color: #ffffff;
+                font-size: 18px;
+            }
+
+        .task-button {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+            .task-button:hover {
+                background-color: #a2aaa0;
+            }
+
+        .tasks.scrollable {
+            max-height: 590px;
+            overflow-y: auto;
+            margin: 20px auto;
+            width: 90%;
+            padding-right: 10px;
+            border: 1px solid #000000;
+        }
+
+        @media (max-width: 600px) {
+            .task-container {
+                max-width: 99%;
+            }
+
+            .task-button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .task h4 {
+                font-size: 16px;
+            }
+        }
+
+        /* Navigation Styles */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #222;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 99%;
+            border-top: 2px solid #444; /* Add a border at the top of the navigation */
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            padding: 8px 16px; /* Adjust padding for better clickability */
+            border-radius: 8px; /* Rounded corners */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        }
+
+            .nav-item i {
+                display: block;
+                font-size: 20px;
+            }
+
+            .nav-item span {
+                font-size: 12px;
+            }
+
+            /* Hover effect */
+            .nav-item:hover {
+                background-color: #ff6347; /* Tomato color for hover */
+                transform: scale(1.1); /* Slightly enlarge on hover */
+            }
+
+            /* Active state when clicked */
+            .nav-item:active {
+                background-color: #e24d3c; /* Darker red for active state */
+            }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .task-container {
+                max-width: 99%;
+            }
+
+            .task-button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .task h4 {
+                font-size: 16px;
+            }
+
+            .nav-item {
+                font-size: 12px;
+                padding: 6px 12px; /* Adjust padding for small screens */
+            }
+
+                .nav-item i {
+                    font-size: 18px; /* Smaller icon size for mobile */
+                }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="balance-container">
+
+
+        <h2><b> EARN MORE FISH🐟 </b></h2>
+    </div>
+
+
+    <section class="tasks scrollable">
+        <div class="task-container">
+            <div class="task">
+                <div class="task-detail">
+                    <div class="task-image">
+                        <img src="material/images/you.gif" width="45px" alt="">
+                    </div>
+                    <div>
+                        <h4>Subscribe</h4>
+                        <div class="task-data">
+                            <img src="material/images/logo.png" width="20px" alt="Coin Icon">
+                            <h5>99</h5>
+                        </div>
+                    </div>
+                </div>
+                <button class="task-button" onclick="completeTask(99, 'https://youtube.com/@html-hero?si=5-fOU4FeAD5mSvK-')">🐟 claim</button>
+            </div>
+
+            <div class="task-container">
+                <div class="task">
+                    <div class="task-detail">
+                        <div class="task-image">
+                            <img src="material/images/tele.png" width="45px" alt="">
+                        </div>
+                        <div>
+                            <h4>Subscribe</h4>
+                            <div class="task-data">
+                                <img src="material/images/logo.png" width="20px" alt="Coin Icon">
+                                <h5>99</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="task-button" onclick="completeTask(99, 'https://youtu.be/JqVhry6_O8A?si=cmsyr9Ty1R5VPk9U')">🐟 claim</button>
+                </div>
+
+                <div class="task-container">
+                    <div class="task">
+                        <div class="task-detail">
+                            <div class="task-image">
+                                <img src="material/images/te.png" width="45px" alt="">
+                            </div>
+                            <div>
+                                <h4>Subscribe</h4>
+                                <div class="task-data">
+                                    <img src="material/images/logo.png" width="20px" alt="Coin Icon">
+                                    <h5>99</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="task-button" onclick="completeTask(99, 'https://youtu.be/JqVhry6_O8A?si=cmsyr9Ty1R5VPk9U')">🐟 claim</button>
+                    </div>
+
+                    <nav class="bottom-nav">
+                        <a href="home.html" class="nav-item">
+                            <i class="fas fa-home"></i>
+                            <span>HOME</span>
+                        </a>
+                        <a href="leaderboard.html" class="nav-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>LEADERBOARD</span>
+                        </a>
+                        <a href="invite-friends.html" class="nav-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>FRIENDS</span>
+                        </a>
+                        <a href="task.html" class="nav-item">
+                            <i class="fas fa-tasks"></i>
+                            <span>TASKS</span>
+                        </a>
+                        <a href="withdraw.html" class="nav-item">
+                            <i class="fas fa-wallet"></i>
+                            <span>WITHDRAW</span>
+                        </a>
+                    </nav>
+
+                    <script src="material/js/js.js"></script>
+                    <script src="material/js/main.js"></script>
+</body>
+</html>

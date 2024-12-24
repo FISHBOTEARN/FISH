@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="material/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* This line disables scrolling */
+        }
+
+        #balance-container {
+            margin: 20px;
+            font-size: 18px;
+        }
+
+            #balance-container h2 {
+                font-size: 36px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            #balance-container span {
+                font-size: 48px;
+                font-weight: bold;
+                color: #ffffff;
+                display: block;
+                margin-top: 10px;
+            }
+
+        .logo-container {
+            margin: 20px 0;
+            animation: zoom 5s infinite alternate;
+        }
+
+        /* Animation for zooming the image in and out */
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2); /* Zoom in */
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .logo-container img {
+            width: 200px;
+            height: auto;
+        }
+
+        .mandatory-task {
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+
+        .task-container {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .task {
+            margin: 10px auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #000000;
+            border-radius: 12px;
+            background-color: #333030;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            width: 80%;
+        }
+
+            .task:hover {
+                transform: translateY(-5px);
+            }
+
+        .task-detail {
+            display: flex;
+            align-items: center;
+        }
+
+        .task-image img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .task h4 {
+            margin: 0;
+            font-size: 18px;
+            color: #f2f2f2;
+        }
+
+        .task-data {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+            .task-data img {
+                margin-right: 5px;
+            }
+
+            .task-data h5 {
+                margin: 0;
+                color: #ffffff;
+                font-size: 18px;
+            }
+
+        .task-button {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+            .task-button:hover {
+                background-color: #a2aaa0;
+            }
+
+            .task-button:disabled {
+                background-color: #555;
+                color: #999;
+                cursor: not-allowed;
+            }
+
+            .task-button .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                font-weight: bold;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .task-button.claimed .overlay {
+                opacity: 1;
+            }
+
+
+        .timer {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: bold;
+            display: none;
+        }
+
+        .claimed .timer {
+            display: block;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #222;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+        }
+
+            .nav-item i {
+                display: block;
+                font-size: 20px;
+            }
+
+            .nav-item span {
+                font-size: 12px;
+            }
+
+        @media (max-width: 600px) {
+            .task-container {
+                max-width: 100%;
+            }
+
+            .task-button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .task h4 {
+                font-size: 16px;
+            }
+        }
+        /* Navigation Styles */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #222;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #444; /* Add a border at the top of the navigation */
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            padding: 8px 16px; /* Adjust padding for better clickability */
+            border-radius: 8px; /* Rounded corners */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        }
+
+            .nav-item i {
+                display: block;
+                font-size: 20px;
+            }
+
+            .nav-item span {
+                font-size: 12px;
+            }
+
+            /* Hover effect */
+            .nav-item:hover {
+                background-color: #ff6347; /* Tomato color for hover */
+                transform: scale(1.1); /* Slightly enlarge on hover */
+            }
+
+            /* Active state when clicked */
+            .nav-item:active {
+                background-color: #e24d3c; /* Darker red for active state */
+            }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .task-container {
+                max-width: 100%;
+            }
+
+            .task-button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .task h4 {
+                font-size: 16px;
+            }
+
+            .nav-item {
+                font-size: 12px;
+                padding: 6px 12px; /* Adjust padding for small screens */
+            }
+
+                .nav-item i {
+                    font-size: 18px; /* Smaller icon size for mobile */
+                }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="balance-container">
+        <h2>FISH🐟Balance</h2>
+        <span id="balance">🐟</span>
+    </div>
+
+    <div class="logo-container">
+        <img src="material/images/logo.png" alt="Logo">
+    </div>
+
+    <div class="mandatory-task">DAILY TASK</div>
+
+    <div class="task-container" id="taskList">
+        <div class="task" id="task1">
+            <div class="task-detail">
+                <div class="task-image">
+                    <img src="material/images/logo.png" width="45px" alt="">
+                </div>
+                <div>
+                    <h4>Daily Rewards</h4>
+                    <div class="task-data">
+                        <img src="material/images/logo.png" width="20px" alt="Coin Icon">
+                        <h5>99</h5>
+                    </div>
+                </div>
+            </div>
+            <button class="task-button" id="claimButton" onclick="completeTask(99, 'task1')">
+                🐟 Claim
+                <span class="overlay">Claimed</span>
+            </button>
+            <div class="timer" id="timer1">00:00:00</div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>HOME</span>
+        </a>
+        <a href="leaderboard.html" class="nav-item">
+            <i class="fas fa-trophy"></i>
+            <span>LEADERBOARD</span>
+        </a>
+        <a href="invite-friends.html" class="nav-item">
+            <i class="fas fa-user-friends"></i>
+            <span>FRIENDS</span>
+        </a>
+        <a href="task.html" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>TASKS</span>
+        </a>
+        <a href="withdraw.html" class="nav-item">
+            <i class="fas fa-wallet"></i>
+            <span>WITHDRAW</span>
+        </a>
+    </nav>
+
+    <script>
+        // On page load, check if the reward has been claimed previously
+        window.onload = function () {
+            const isClaimed = localStorage.getItem('rewardClaimed');
+            const balance = localStorage.getItem('balance');
+
+            // Check if it's a new user and give them the 399 Fish Tokens
+            if (!isClaimed) {
+                // Give the 399 Fish Tokens only once
+                let balance = parseInt(localStorage.getItem('balance')) || 0;
+                balance += 399; // Add 399 Fish Tokens to new user
+                localStorage.setItem('balance', balance);
+                localStorage.setItem('rewardClaimed', 'true'); // Mark as claimed
+                document.getElementById('balance').textContent = balance; // Update balance on UI
+            }
+
+            // If the reward was already claimed, disable the claim button
+            if (isClaimed === 'true') {
+                const claimButton = document.getElementById('claimButton');
+                claimButton.disabled = true;
+                claimButton.textContent = "Claimed";
+                claimButton.classList.add('claimed');
+                startTimer(); // Start timer after claim
+            }
+
+            if (balance) {
+                document.getElementById('balance').textContent = balance;
+            }
+        };
+
+        // Function to handle the task completion and reward claim
+        function completeTask(points, taskId) {
+            const taskButton = document.querySelector(`#${taskId} .task-button`);
+            taskButton.disabled = true;
+            taskButton.textContent = "Claimed";
+            taskButton.classList.add('claimed');
+
+            // Update balance
+            let balance = localStorage.getItem('balance') || 0;
+            balance = parseInt(balance) + points;
+            localStorage.setItem('balance', balance);
+            document.getElementById('balance').textContent = balance;
+
+            // Mark reward as claimed
+            localStorage.setItem('rewardClaimed', 'true');
+
+            startTimer(); // Start the countdown timer after claim
+        }
+
+        // Start the countdown timer based on 12:00 AM UTC
+        function startTimer() {
+            const timerElement = document.getElementById('timer1');
+            const now = new Date();
+            const targetTime = new Date();
+            targetTime.setUTCHours(24, 0, 0, 0); // Set to 12:00 AM UTC
+
+            const updateTimer = () => {
+                const remainingTime = targetTime - now;
+                const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+                timerElement.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            };
+
+            const pad = (num) => (num < 10 ? '0' + num : num);
+
+            setInterval(updateTimer, 1000);
+            updateTimer(); // Initial call to display the timer immediately
+        }
+
+    </script>
+
+</body>
+</html>

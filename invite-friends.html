@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Friends</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="material/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .frens-invite {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .frens-invite-button {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 80%;
+            max-width: 500px;
+        }
+
+            .frens-invite-button input {
+                padding: 10px;
+                font-size: 18px;
+                color: #ffffff; /* Changed to #ffffff */
+                border: 2px solid #ffffff; /* Changed to #ffffff */
+                background-color: #222;
+                border-radius: 8px;
+                width: 70%;
+                margin-right: 10px;
+            }
+
+            .frens-invite-button button {
+                background-color: #ffffff; /* Changed to #ffffff */
+                color: #222;
+                border: none;
+                padding: 12px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 8px;
+                transition: background-color 0.3s ease;
+            }
+
+                .frens-invite-button button:hover {
+                    background-color: #008ac1; /* Changed hover to a darker shade */
+                }
+
+
+        .coming-soon {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6347;
+            margin-top: 30px;
+            animation: fadeIn 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+        /* Navigation Styles */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #222;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #444; /* Add a border at the top of the navigation */
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            padding: 8px 16px; /* Adjust padding for better clickability */
+            border-radius: 8px; /* Rounded corners */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+        }
+
+            .nav-item i {
+                display: block;
+                font-size: 20px;
+            }
+
+            .nav-item span {
+                font-size: 12px;
+            }
+
+            /* Hover effect */
+            .nav-item:hover {
+                background-color: #ff6347; /* Tomato color for hover */
+                transform: scale(1.1); /* Slightly enlarge on hover */
+            }
+
+            /* Active state when clicked */
+            .nav-item:active {
+                background-color: #e24d3c; /* Darker red for active state */
+            }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .task-container {
+                max-width: 100%;
+            }
+
+            .task-button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .task h4 {
+                font-size: 16px;
+            }
+
+            .nav-item {
+                font-size: 12px;
+                padding: 6px 12px; /* Adjust padding for small screens */
+            }
+
+                .nav-item i {
+                    font-size: 18px; /* Smaller icon size for mobile */
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="frens-invite">
+        <h2 style="font-size: 36px; font-weight: bold; margin-bottom: 20px;">Invite Friends & Earn Rewards!</h2>
+        <div class="frens-invite-button">
+            <input type="text" value="https://t.me/fishearn_bot/FISH" id="link" readonly>
+            <button id="copyButton">Copy Link</button>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>HOME</span>
+        </a>
+        <a href="leaderboard.html" class="nav-item">
+            <i class="fas fa-trophy"></i>
+            <span>LEADERBOARD</span>
+        </a>
+        <a href="invite-friends.html" class="nav-item">
+            <i class="fas fa-user-friends"></i>
+            <span>FRIENDS</span>
+        </a>
+        <a href="task.html" class="nav-item">
+            <i class="fas fa-tasks"></i>
+            <span>TASKS</span>
+        </a>
+        <a href="withdraw.html" class="nav-item">
+            <i class="fas fa-wallet"></i>
+            <span>WITHDRAW</span>
+        </a>
+    </nav>
+
+    <script>
+        // JavaScript to copy the link to clipboard
+        document.getElementById('copyButton').addEventListener('click', function () {
+            var copyText = document.getElementById('link');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            document.execCommand('copy');
+
+            // Alert the copied text
+            alert("Link copied: " + copyText.value);
+        });
+    </script>
+
+</body>
+</html>
